@@ -1,4 +1,6 @@
 package com.example.junit_selenium;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import com.codeborne.selenide.Configuration;
@@ -7,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,12 +24,16 @@ public class SearchIMDB {
     private Map<String, Object> vars;
     JavascriptExecutor js;
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         //driver = new FirefoxDriver();
+        DesiredCapabilities capabilities = new  DesiredCapabilities();
+	    capabilities.setCapability("browserName","firefox");
 
-        Configuration.startMaximized =true;
-        open("about:blank");
-        driver = getWebDriver();
+	
+        //Configuration.startMaximized =true;
+        //open("about:blank");
+
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }
@@ -44,15 +53,15 @@ public class SearchIMDB {
             TimeUnit.SECONDS.sleep(3);
         }catch (InterruptedException e){
             //handle the exception
-        }*/
+        }
 
         driver.findElement(By.id("suggestion-search")).sendKeys(Keys.ENTER);
         /*try{
             TimeUnit.SECONDS.sleep(3);
         }catch (InterruptedException e){
             //handle the exception
-        }*/
+        }
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        driver.findElement(By.linkText("WandaVision")).click();
+        driver.findElement(By.linkText("WandaVision")).click();*/
     }
 }
