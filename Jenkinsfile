@@ -3,29 +3,21 @@ pipeline {
 
 
     environment {
-	SERVER = 'http://10.150.7.2//:4444'
-	BROWSER = 'firefox'
-	HEADLESS_VALUE = 'false'
+        SERVER = 'http://10.150.7.2:4444'
+        BROWSER = 'firefox'
+        HEADLESS_VALUE = 'false'
 
 
 
     }
     stages {
         
-        stage('Build') {
-            steps {
-                withGradle {
-                    sh 'chmod +x ./gradlew'
-                    sh './gradlew assemble'
-                }
-            }
-        }
         
         
         
         stage('Test') {
             steps {
-		multiple_test()
+               multiple_test()
                 
             }
 
@@ -37,9 +29,9 @@ pipeline {
 }
 def multiple_test() {
 
-	withGradle {
-		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
-		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=chrome -Pheadless=${HEADLESS_VALUE}'
-		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=opera -Pheadless=${HEADLESS_VALUE}'
-	}
+        withGradle {
+                sh './gradlew test -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
+                sh './gradlew test -Premote_server=${SERVER} -Pbrowser=chrome -Pheadless=${HEADLESS_VALUE}'
+                sh './gradlew test -Premote_server=${SERVER} -Pbrowser=opera -Pheadless=${HEADLESS_VALUE}'
+        }
 }
