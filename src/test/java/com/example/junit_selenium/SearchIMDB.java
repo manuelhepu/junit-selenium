@@ -45,11 +45,11 @@ public class SearchIMDB {
     public void imdb() {
         driver.get("https://www.imdb.com/");
         driver.manage().window().setSize(new Dimension(1107, 692));
-        driver.findElement(By.id("suggestion-search")).click();
+         /*driver.findElement(By.id("suggestion-search")).click();
         driver.findElement(By.id("suggestion-search")).sendKeys("wandavision");
-        //Thread.sleep(2000);
+       //Thread.sleep(2000);
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        /*try{
+        try{
             TimeUnit.SECONDS.sleep(3);
         }catch (InterruptedException e){
             //handle the exception

@@ -72,11 +72,11 @@ public class Robobar {
         }catch (InterruptedException e){
             //handle the exception
         }*/
-
+/*
         driver.findElement(By.id("ageInput")).click();
         driver.findElement(By.id("ageInput")).sendKeys("26");
 
-        /*
+        
         try{
             TimeUnit.SECONDS.sleep(3);
         }catch (InterruptedException e){
