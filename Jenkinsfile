@@ -25,7 +25,7 @@ pipeline {
         
         stage('Test') {
             steps {
-			multiple_test()
+		multiple_test()
                 
             }
 
@@ -33,13 +33,13 @@ pipeline {
         
     }
 
-    def multiple_test() {
+
+}
+def multiple_test() {
 
 	withGradle {
 		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
 		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=chrome -Pheadless=${HEADLESS_VALUE}'
 		sh './gradlew test -Premote_server=${SERVER} -Pbrowser=opera -Pheadless=${HEADLESS_VALUE}'
 	}
-    }
 }
-
