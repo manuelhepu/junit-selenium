@@ -19,13 +19,13 @@ pipeline {
             steps {
                withGradle {
                 sh 'chmod +x ./gradlew'
-                configFileProvider([configFile(fileId: 'sonar.gradle.properties', targetLocation: 'gradle.properties')]) {
+                /*configFileProvider([configFile(fileId: 'sonar.gradle.properties', targetLocation: 'gradle.properties')]) {
                                sh './gradlew clean sonarqube  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
-                }
+                }*/
                
              }
                 
-                withSonarQubeEnv(credentialsId: 'c8c23d90-c1f4-4828-910a-97bfca0f6944') {
+               withSonarQubeEnv(credentialsId: 'c8c23d90-c1f4-4828-910a-97bfca0f6944', installationName: 'local') {
                     sh './gradlew clean sonarqube -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
                 }
                 
