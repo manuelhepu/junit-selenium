@@ -24,7 +24,7 @@ pipeline {
         
          }
         
-        /*
+        
         stage('Test') {
             steps {
                withGradle {
@@ -36,7 +36,7 @@ pipeline {
                 
             }
 
-        }*/
+        }
         
     }
 
