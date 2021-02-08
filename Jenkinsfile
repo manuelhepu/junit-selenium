@@ -19,7 +19,10 @@ pipeline {
             steps {
                withGradle {
                 sh 'chmod +x ./gradlew'
-                sh './gradlew clean sonarqube  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
+                configFileProvider([configFile(fileId: 'sonar.gradle.properties', targetLocation: 'gradle.properties')]) {
+                               sh './gradlew clean sonarqube  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
+                }
+               
              }
                 
             }
