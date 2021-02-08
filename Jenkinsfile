@@ -31,7 +31,7 @@ pipeline {
             steps {
                withGradle {
                 sh 'chmod +x ./gradlew'
-                sh './gradlew assemble  -Premote_server=${SERVER}'
+                sh './gradlew assemble  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
              }
                 
             }
