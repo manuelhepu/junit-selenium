@@ -13,17 +13,6 @@ pipeline {
     }
     stages {
         
-         stage('build') {
-            steps {
-               withGradle {
-                sh 'chmod +x ./gradlew'
-                sh './gradlew assemble'
-             }
-                
-            }
-        
-         }
-        
         
         stage('Test') {
             steps {
@@ -37,6 +26,20 @@ pipeline {
             }
 
         }
+        
+         stage('build') {
+            steps {
+               withGradle {
+                sh 'chmod +x ./gradlew'
+                sh './gradlew assemble  -Premote_server=${SERVER}'
+             }
+                
+            }
+        
+         }
+        
+        
+        
         
     }
 
