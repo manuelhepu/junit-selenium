@@ -17,7 +17,7 @@ pipeline {
             steps {
                withGradle {
                 sh 'chmod +x ./gradlew'
-                sh './gradlew clean sonarqube'
+                sh './gradlew assemble'
              }
                 
             }
