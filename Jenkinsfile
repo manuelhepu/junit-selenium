@@ -26,7 +26,7 @@ pipeline {
              }
                 
                 withSonarQubeEnv(credentialsId: 'c8c23d90-c1f4-4828-910a-97bfca0f6944') {
-                    sh './gradlew clean sonarqube'
+                    sh './gradlew clean sonarqube -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
                 }
                 
             }
