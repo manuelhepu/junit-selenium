@@ -14,6 +14,19 @@ pipeline {
     stages {
         
         
+        
+        stage('build') {
+            steps {
+               withGradle {
+                sh 'chmod +x ./gradlew'
+                sh './gradlew assemble  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
+             }
+                
+            }
+        
+         }
+        
+        
         stage('Test') {
             steps {
                withGradle {
@@ -27,16 +40,7 @@ pipeline {
 
         }
         
-         stage('build') {
-            steps {
-               withGradle {
-                sh 'chmod +x ./gradlew'
-                sh './gradlew assemble  -Premote_server=${SERVER} -Pbrowser=firefox -Pheadless=${HEADLESS_VALUE}'
-             }
-                
-            }
-        
-         }
+         
         
         
         
