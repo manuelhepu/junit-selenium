@@ -13,9 +13,18 @@ pipeline {
     }
     stages {
         
+         stage('build') {
+            steps {
+               withGradle {
+                sh 'chmod +x ./gradlew'
+                sh './gradlew sonarqube'
+             }
+                
+            }
         
         
         
+        /*
         stage('Test') {
             steps {
                withGradle {
@@ -27,7 +36,7 @@ pipeline {
                 
             }
 
-        }
+        }*/
         
     }
 
