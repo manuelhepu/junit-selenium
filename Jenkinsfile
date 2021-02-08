@@ -17,8 +17,14 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew test'
+                    sh './gradlew clean check'
                 }
+            }
+  
+            post {
+                 always {
+                    recordIssues enabledForFailure: true, tool: spotBugs(pattern: 'build/reports/spotbugs/*.xml')
+                 }
             }
 
         }

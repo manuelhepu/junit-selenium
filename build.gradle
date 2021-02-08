@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.8.1'
-    id 'pmd'
+    id 'com.github.spotbugs' '4.2.1'
 }
 
 group 'com.example'
@@ -45,10 +45,7 @@ allure {
     }
 }
 
+spotbugsTest {
 
-pmd {
-    consoleOutput = true
-    toolVersion = "6.21.0"
-    rulesMinimumPriority = 5
-    ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+ ignoreFailures = true
 }
